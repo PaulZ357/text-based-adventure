@@ -23,13 +23,16 @@ public class TextBasedAdventure {
     }
 
     public void goLeft() {
-        System.out.println("Oh no! You run into a giant! Fight or flight?\n1. Fight \n2. Flight");
+        System.out.println("Oh no! You run into a giant! Fight, flight, or freeze?\n1. Fight \n2. Flight\n3. Freeze");
         int input = keyboardInput.nextInt();
         if (input == 1) {
             fight();
         }
         else if (input == 2) {
             start();
+        }  
+        else if (input == 3) {
+            freeze();
         }  
     }
 
@@ -50,6 +53,10 @@ public class TextBasedAdventure {
         } else {
             System.out.println("You get stomped by the giant and red stuff goes everywhere.");
         }
+    }
+
+    public void freeze() {
+        System.out.println("You decided to not do anything and the giant decided to leave you alone without a single hit. You are no longer anxious.");
     }
 
     public static void main(String[] args) {
