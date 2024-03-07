@@ -28,6 +28,7 @@ public class TextBasedAdventure {
 
     public void goStraight(){
         boolean wandering = true;
+        int keepGoingCounter = 0;
         while (wandering){
             System.out.println("You seem to have wandered into a long hallway. It might go on forever. What would you like to do?\n1. Go back\n2. Keep going");
             int input = keyboardInput.nextInt();
@@ -35,9 +36,11 @@ public class TextBasedAdventure {
                 start();
             }
             else if (input == 2){
-                // it will loop again
+                keepGoingCounter++;
+                wandering = !(keepGoingCounter == 5);
             }
         }
+        System.out.println("The hallway ended and you escaped the cave!");
         
     }
 
