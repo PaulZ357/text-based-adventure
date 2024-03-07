@@ -13,7 +13,7 @@ public class TextBasedAdventure {
     }
 
     public void start() {
-        System.out.println("You find yourself in a large room. What would you like to do?\n1. Go left \n2. Go right\n3. Go straight");
+        System.out.println("You find yourself in a large room. What would you like to do?\n1. Go left \n2. Go right\n3. Go straight\n4. Go back");
         int input = keyboardInput.nextInt();
         if (input == 1) {
             goLeft();
@@ -24,7 +24,32 @@ public class TextBasedAdventure {
         else if (input == 3){
             goStraight();
         }
+        else if (input == 4){
+            goBack();
+        }
     }
+
+    public void goBack(){
+        System.out.println("A big boulder blocked your path back! It seems like the cave is caving in!! Some entrances may be blocked.. take your best guess");
+        System.out.println("What would you like to do?\n1. Go left \n2. Go right\n3. Go straight");
+        Random random = new Random();
+        int rolledNumber = random.nextInt(4);
+        int input = keyboardInput.nextInt();
+        if (rolledNumber == 3){
+            System.out.println("Your path was nearly blocked, but somehow you made it!");
+        }
+
+        if (input == 1) {
+            goLeft();
+        }
+        else if (input == 2) {
+            goRight();
+        }
+        else if (input == 3){
+            goStraight();
+        }
+    }
+
 
     public void goStraight(){
         boolean wandering = true;
