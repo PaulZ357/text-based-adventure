@@ -4,6 +4,8 @@ public class TextBasedAdventure {
     boolean hasSword = false;
     Scanner keyboardInput = new Scanner(System.in);
 
+    int score = 0;
+
     public void execute() {
         System.out.println("Welcome to Escape from the Cave! Press enter when you are ready to start...");
         keyboardInput.nextLine();
@@ -36,8 +38,7 @@ public class TextBasedAdventure {
 
     public void goRight() {
         if (!hasSword) {
-            System.out.println("You find a sword on the ground!");
-            hasSword = true;
+            getSword();
         }
         else {
             System.out.println("There's nothing here...");
@@ -45,9 +46,16 @@ public class TextBasedAdventure {
         start();
     }
 
+    private void getSword() {
+        System.out.println("You find a sword on the ground!");
+        hasSword = true;
+        score += 200;
+    }
+
     public void fight() {
         if (hasSword) {
             System.out.println("You defeat the giant with your sword and run out of the cave!");
+            score += 1000;
             victoryScreen();
         } else {
             System.out.println("You get stomped by the giant and red stuff goes everywhere.");
@@ -57,11 +65,11 @@ public class TextBasedAdventure {
 
 
     public void victoryScreen() {
-        System.out.println("Congratulations! You have won!");
+        System.out.printf("Congratulations! You have won!%nFinal Score: %s%n", score);
     }
 
     public void deathScreen() {
-        System.out.println("You have died.\nGame Over!");
+        System.out.printf("You have died.%nGame Over!%nFinal Score: %s%n", score);
     }
 
 
