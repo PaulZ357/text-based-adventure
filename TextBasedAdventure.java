@@ -29,8 +29,9 @@ public class TextBasedAdventure {
             fight();
         }
         else if (input == 2) {
+            System.out.println("You run away from the Giant.");
             start();
-        }  
+        }
     }
 
     public void goRight() {
@@ -47,10 +48,22 @@ public class TextBasedAdventure {
     public void fight() {
         if (hasSword) {
             System.out.println("You defeat the giant with your sword and run out of the cave!");
+            victoryScreen();
         } else {
             System.out.println("You get stomped by the giant and red stuff goes everywhere.");
+            deathScreen();
         }
     }
+
+
+    public void victoryScreen() {
+        System.out.println("Congratulations! You have won!");
+    }
+
+    public void deathScreen() {
+        System.out.println("You have died.\nGame Over!");
+    }
+
 
     public static void main(String[] args) {
         new TextBasedAdventure().execute();
