@@ -12,7 +12,7 @@ public class TextBasedAdventure {
     }
 
     public void start() {
-        System.out.println("You find yourself in a large room. What would you like to do?\n1. Go left \n2. Go right");
+        System.out.println("You find yourself in a large room. What would you like to do?\n1. Go left \n2. Go right\n3. Go straight");
         int input = keyboardInput.nextInt();
         if (input == 1) {
             goLeft();
@@ -20,6 +20,24 @@ public class TextBasedAdventure {
         else if (input == 2) {
             goRight();
         }
+        else if (input == 3){
+            goStraight();
+        }
+    }
+
+    public void goStraight(){
+        boolean wandering = true;
+        while (wandering){
+            System.out.println("You seem to have wandered into a long hallway. It might go on forever. What would you like to do?\n1. Go back\n2. Keep going");
+            int input = keyboardInput.nextInt();
+            if (input ==1){
+                start();
+            }
+            else if (input == 2){
+                // it will loop again
+            }
+        }
+        
     }
 
     public void goLeft() {
