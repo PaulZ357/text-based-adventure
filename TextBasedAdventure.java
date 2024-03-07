@@ -113,6 +113,7 @@ public class TextBasedAdventure {
         } else if (rolledNumber == 3) {
             System.out.println("You defeat the giant with your bare hands and run out of the cave!");
             score += giantScore;
+            victoryScreen();
         } else {
             System.out.println("You get stomped by the giant and red stuff goes everywhere.");
             deathScreen();
