@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class TextBasedAdventure {
@@ -5,6 +6,7 @@ public class TextBasedAdventure {
     Scanner keyboardInput = new Scanner(System.in);
 
     int score = 0;
+    final int giantScore = 1000;
 
     public void execute() {
         System.out.println("Welcome to Escape from the Cave! Press enter when you are ready to start...");
@@ -14,7 +16,7 @@ public class TextBasedAdventure {
     }
 
     public void start() {
-        System.out.println("You find yourself in a large room. What would you like to do?\n1. Go left \n2. Go right");
+        System.out.println("You find yourself in a large room. What would you like to do?\n1. Go left \n2. Go right\n3. Go straight");
         int input = keyboardInput.nextInt();
         if (input == 1) {
             goLeft();
@@ -22,10 +24,28 @@ public class TextBasedAdventure {
         else if (input == 2) {
             goRight();
         }
+        else if (input == 3){
+            goStraight();
+        }
+    }
+
+    public void goStraight(){
+        boolean wandering = true;
+        while (wandering){
+            System.out.println("You seem to have wandered into a long hallway. It might go on forever. What would you like to do?\n1. Go back\n2. Keep going");
+            int input = keyboardInput.nextInt();
+            if (input ==1){
+                start();
+            }
+            else if (input == 2){
+                // it will loop again
+            }
+        }
+        
     }
 
     public void goLeft() {
-        System.out.println("Oh no! You run into a giant! Fight or flight?\n1. Fight \n2. Flight");
+        System.out.println("Oh no! You run into a giant! Fight, flight, or freeze?\n1. Fight \n2. Flight\n3. Freeze");
         int input = keyboardInput.nextInt();
         if (input == 1) {
             fight();
@@ -33,6 +53,9 @@ public class TextBasedAdventure {
         else if (input == 2) {
             System.out.println("You run away from the Giant.");
             start();
+        }
+        else if (input == 3) {
+            freeze();
         }
     }
 
@@ -53,16 +76,20 @@ public class TextBasedAdventure {
     }
 
     public void fight() {
+        Random random = new Random();
+        int rolledNumber = random.nextInt(5);
         if (hasSword) {
             System.out.println("You defeat the giant with your sword and run out of the cave!");
-            score += 1000;
+            score += giantScore;
             victoryScreen();
+        } else if (rolledNumber == 3) {
+            System.out.println("You defeat the giant with your bare hands and run out of the cave!");
+            score += giantScore;
         } else {
             System.out.println("You get stomped by the giant and red stuff goes everywhere.");
             deathScreen();
         }
     }
-
 
     public void victoryScreen() {
         System.out.printf("Congratulations! You have won!%nFinal Score: %s%n", score);
@@ -72,6 +99,10 @@ public class TextBasedAdventure {
         System.out.printf("You have died.%nGame Over!%nFinal Score: %s%n", score);
     }
 
+
+    public void freeze() {
+        System.out.println("You decided to not do anything and the giant decided to leave you alone without a single hit. You are no longer anxious.");
+    }
 
     public static void main(String[] args) {
         new TextBasedAdventure().execute();
