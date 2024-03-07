@@ -129,7 +129,15 @@ public class TextBasedAdventure {
 
 
     public void freeze() {
-        System.out.println("You decided to not do anything and the giant decided to leave you alone without a single hit. You are no longer anxious.");
+        System.out.println("You decided to not do anything and the giant decided to leave you alone without a single hit. You are no longer anxious."+
+            "\nHowever the giant decided to go straight, and has decided that he would fight you once you follow him. However, you notice there is another exit to the right. What should you do? 1-Go straight, 2-go back");
+            int input = keyboardInput.nextInt();
+            if (input == 1) {
+                fight();
+            }
+            else if (input == 2) {
+                start();
+            }  
     }
 
     public static void main(String[] args) {
