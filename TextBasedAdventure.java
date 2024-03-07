@@ -5,6 +5,9 @@ public class TextBasedAdventure {
     boolean hasSword = false;
     Scanner keyboardInput = new Scanner(System.in);
 
+    int score = 0;
+    final int giantScore = 1000;
+
     public void execute() {
         System.out.println("Welcome to Escape from the Cave! Press enter when you are ready to start...");
         keyboardInput.nextLine();
@@ -51,17 +54,17 @@ public class TextBasedAdventure {
             fight();
         }
         else if (input == 2) {
+            System.out.println("You run away from the Giant.");
             start();
-        }  
+        }
         else if (input == 3) {
             freeze();
-        }  
+        }
     }
 
     public void goRight() {
         if (!hasSword) {
-            System.out.println("You find a sword on the ground!");
-            hasSword = true;
+            getSword();
         }
         else {
             System.out.println("There's nothing here...");
@@ -69,18 +72,36 @@ public class TextBasedAdventure {
         start();
     }
 
+    private void getSword() {
+        System.out.println("You find a sword on the ground!");
+        hasSword = true;
+        score += 200;
+    }
+
     public void fight() {
         Random random = new Random();
         int rolledNumber = random.nextInt(5);
-
         if (hasSword) {
             System.out.println("You defeat the giant with your sword and run out of the cave!");
+            score += giantScore;
+            victoryScreen();
         } else if (rolledNumber == 3) {
             System.out.println("You defeat the giant with your bare hands and run out of the cave!");
+            score += giantScore;
         } else {
             System.out.println("You get stomped by the giant and red stuff goes everywhere.");
+            deathScreen();
         }
     }
+
+    public void victoryScreen() {
+        System.out.printf("Congratulations! You have won!%nFinal Score: %s%n", score);
+    }
+
+    public void deathScreen() {
+        System.out.printf("You have died.%nGame Over!%nFinal Score: %s%n", score);
+    }
+
 
     public void freeze() {
         System.out.println("You decided to not do anything and the giant decided to leave you alone without a single hit. You are no longer anxious.");
