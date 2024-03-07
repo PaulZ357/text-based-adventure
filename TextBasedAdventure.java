@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class TextBasedAdventure {
@@ -45,8 +46,13 @@ public class TextBasedAdventure {
     }
 
     public void fight() {
+        Random random = new Random();
+        int rolledNumber = random.nextInt(5);
+
         if (hasSword) {
             System.out.println("You defeat the giant with your sword and run out of the cave!");
+        } else if (rolledNumber == 3) {
+            System.out.println("You defeat the giant with your bare hands and run out of the cave!");
         } else {
             System.out.println("You get stomped by the giant and red stuff goes everywhere.");
         }
