@@ -104,14 +104,28 @@ public class TextBasedAdventure {
     }
 
     public void fight() {
+        int playerHP = 10;
+        int giantHP = 20;
+        final int playerDamage = hasSword ? 9 : 4;
+        final int giantDamage = 3;
         Random random = new Random();
-        int rolledNumber = random.nextInt(5);
-        if (hasSword) {
+        while (playerHP > 0 && giantHP > 0) {
+            System.out.println("Player attacks");
+            if (random.nextInt(4) == 0) {
+                System.out.printf("A Critical hit!%n%d damage.%n", playerDamage * 3);
+                giantHP -= playerDamage * 3;
+                score += 50;
+            } else {
+                System.out.printf("%n%d damage.%n", playerDamage);
+                giantHP -= playerDamage;
+            }
+            keyboardInput.nextLine();
+            System.out.printf("Giant attacks%n%n%d damage.%n", giantDamage);
+            playerHP -= giantDamage;
+            keyboardInput.nextLine();
+        }
+        if (playerHP > 0) {
             System.out.println("You defeat the giant with your sword and run out of the cave!");
-            score += giantScore;
-            victoryScreen();
-        } else if (rolledNumber == 3) {
-            System.out.println("You defeat the giant with your bare hands and run out of the cave!");
             score += giantScore;
             victoryScreen();
         } else {
